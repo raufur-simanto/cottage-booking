@@ -113,14 +113,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const cottageElement = document.createElement('div');
         cottageElement.classList.add('cottage-item');
         
+        const placeholderImage = `https://via.placeholder.com/300x200?text=${encodeURIComponent(cottage.cottageName)}`;
+        
+        // Create booking period HTML if it exists
+        let bookingPeriodHtml = '';
+        if (cottage.bookingPeriod && cottage.bookingPeriod.startDate && cottage.bookingPeriod.endDate) {
+            bookingPeriodHtml = `
+                <div class="booking-period">
+                    <h4>Booking Period</h4>
+                    <p>From: ${cottage.bookingPeriod.startDate}</p>
+                    <p>To: ${cottage.bookingPeriod.endDate}</p>
+                </div>
+            `;
+        }
+
+        // Create booking number HTML if it exists
+        let bookingNumberHtml = cottage.bookingNumber ? 
+            `<p class="booking-number">Booking Number: ${cottage.bookingNumber}</p>` : '';
+        
         cottageElement.innerHTML = `
             <h3>${cottage.cottageName || 'Unnamed Cottage'}</h3>
-            ${cottage.image ? `<img src="${cottage.image}" alt="${cottage.cottageName || 'Cottage'}" style="max-width: 200px;">` : ''}
+            <img src="${placeholderImage}" alt="${cottage.cottageName || 'Cottage'}" style="max-width: 100%; height: auto;">
+            ${bookingNumberHtml}
             <p>Address: ${cottage.address || 'N/A'}</p>
             <p>Capacity: ${cottage.actualPlaces || 'N/A'} people, ${cottage.actualBedrooms || 'N/A'} bedrooms</p>
             <p>Distance to Lake: ${cottage.distanceToLake || 'N/A'} m</p>
             <p>Nearest City: ${cottage.nearestCity || 'N/A'} (${cottage.distanceToCity || 'N/A'} km)</p>
             <p>Available: ${cottage.isAvailable ? 'Yes' : 'No'}</p>
+            ${bookingPeriodHtml}
         `;
         
         return cottageElement;
