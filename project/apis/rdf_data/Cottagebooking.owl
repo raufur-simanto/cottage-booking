@@ -1,0 +1,133 @@
+@prefix : <http://localhost:8080/CottageBooking/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+
+:Person a owl:Class .
+:Cottage a owl:Class .
+:City a owl:Class .
+:Booking a owl:Class .
+:BookingPeriod a owl:Class .
+
+
+:hasName a owl:DatatypeProperty ;
+    rdfs:domain [ owl:unionOf ( :Person :Cottage :City ) ] ;
+    rdfs:range xsd:string .
+
+:hasAddress a owl:DatatypeProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range xsd:string .
+
+:hasImage a owl:DatatypeProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range xsd:anyURI .
+
+:hasNumberOfPlaces a owl:DatatypeProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range xsd:integer .
+
+:hasNumberOfBedrooms a owl:DatatypeProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range xsd:integer .
+
+:hasDistanceToLake a owl:DatatypeProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range xsd:integer .
+
+:hasDistanceToCity a owl:DatatypeProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range xsd:integer .
+
+:hasBookingNumber a owl:DatatypeProperty ;
+    rdfs:domain :Booking ;
+    rdfs:range xsd:string .
+
+:hasStartDate a owl:DatatypeProperty ;
+    rdfs:domain :BookingPeriod ;
+    rdfs:range xsd:date .
+
+:hasEndDate a owl:DatatypeProperty ;
+    rdfs:domain :BookingPeriod ;
+    rdfs:range xsd:date .
+
+
+:hasNearestCity a owl:ObjectProperty ;
+    rdfs:domain :Cottage ;
+    rdfs:range :City .
+
+:hasBookingPeriod a owl:ObjectProperty ;
+    rdfs:domain :Booking ;
+    rdfs:range :BookingPeriod .
+
+:bookedBy a owl:ObjectProperty ;
+    rdfs:domain :Booking ;
+    rdfs:range :Person .
+
+:booksCottage a owl:ObjectProperty ;
+    rdfs:domain :Booking ;
+    rdfs:range :Cottage .
+
+
+
+:City_Helsinki a :City ;
+    :hasName "Helsinki" .
+
+:City_Tampere a :City ;
+    :hasName "Tampere" .
+
+:City_Turku a :City ;
+    :hasName "Turku" .
+
+
+
+:Cottage1 a :Cottage ;
+    :hasName "Lakeview Cottage" ;
+    :hasAddress "123 Lake Road, Helsinki" ;
+    :hasImage <http://localhost:8080/CottageBooking/images/lakeview.jpg> ;
+    :hasNumberOfPlaces 6 ;
+    :hasNumberOfBedrooms 3 ;
+    :hasDistanceToLake 100 ;
+    :hasNearestCity :City_Helsinki ;
+    :hasDistanceToCity 50 .
+
+:Cottage2 a :Cottage ;
+    :hasName "Forest Retreat" ;
+    :hasAddress "456 Forest Lane, Tampere" ;
+    :hasImage <http://localhost:8080/CottageBooking/images/forestretreat.jpg> ;
+    :hasNumberOfPlaces 4 ;
+    :hasNumberOfBedrooms 2 ;
+    :hasDistanceToLake 500 ;
+    :hasNearestCity :City_Tampere ;
+    :hasDistanceToCity 30 .
+
+:Cottage3 a :Cottage ;
+    :hasName "Mountain Cabin" ;
+    :hasAddress "789 Mountain Pass, Turku" ;
+    :hasImage <http://localhost:8080/CottageBooking/images/mountaincabin.jpg> ;
+    :hasNumberOfPlaces 8 ;
+    :hasNumberOfBedrooms 4 ;
+    :hasDistanceToLake 2000 ;
+    :hasNearestCity :City_Turku ;
+    :hasDistanceToCity 70 .
+
+:Cottage4 a :Cottage ;
+    :hasName "Seaside Villa" ;
+    :hasAddress "321 Ocean Drive, Helsinki" ;
+    :hasImage <http://localhost:8080/CottageBooking/images/seasidevilla.jpg> ;
+    :hasNumberOfPlaces 10 ;
+    :hasNumberOfBedrooms 5 ;
+    :hasDistanceToLake 0 ;
+    :hasNearestCity :City_Helsinki ;
+    :hasDistanceToCity 10 .
+
+:Cottage5 a :Cottage ;
+    :hasName "Country House" ;
+    :hasAddress "654 Country Road, Tampere" ;
+    :hasImage <http://localhost:8080/CottageBooking/images/countryhouse.jpg> ;
+    :hasNumberOfPlaces 2 ;
+    :hasNumberOfBedrooms 1 ;
+    :hasDistanceToLake 800 ;
+    :hasNearestCity :City_Tampere ;
+    :hasDistanceToCity 25 .

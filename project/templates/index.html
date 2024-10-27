@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cottage Booking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cottage Booking System</h1>
+            <div id="apiStatus">API Status: Checking...</div>
+        </header>
+
+        <main>
+            <section id="allCottages">
+                <h2>All Cottages</h2>
+                <div class="filter-container">
+                    <label for="availabilityFilter">Filter by availability:</label>
+                    <select id="availabilityFilter">
+                        <option value="">All</option>
+                        <option value="true">Available</option>
+                        <option value="false">Not Available</option>
+                    </select>
+                </div>
+                <div id="cottageList" class="cottage-grid"></div>
+            </section>
+
+            <section id="searchSection">
+                <h2>Search Cottages</h2>
+                <form id="searchForm">
+                    <div class="form-grid">
+                        <input type="text" name="bookerName" placeholder="Booker Name" required>
+                        <input type="number" name="requiredPlaces" placeholder="Required Places" required>
+                        <input type="number" name="requiredBedrooms" placeholder="Required Bedrooms" required>
+                        <input type="number" name="maxLakeDistance" placeholder="Max Lake Distance (m)" required>
+                        <select name="preferredCity" id="preferredCity" required>
+                            <option value="">Select a city</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <input type="number" name="maxCityDistance" placeholder="Max City Distance (km)" required>
+                        <input type="number" name="numberOfDays" placeholder="Number of Days" required>
+                        <input type="date" name="startDate" required>
+                        <input type="number" name="dateShift" placeholder="Date Shift" required>
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+                <div id="searchResults" class="cottage-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
