@@ -53,7 +53,7 @@ Brief description of what your project does.
 
 ## Usage
 
-The application will be available at `http://localhost:5000`
+The application will be available at `http://localhost:5000/cottages`
 
 ## API Documentation
 
