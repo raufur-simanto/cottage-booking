@@ -20,16 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Check API status
-    fetch(`${API_BASE}/alive`)
-        .then(response => response.json())
-        .then(data => {
-            apiStatus.textContent = `API Status: ${data.msg}`;
-            apiStatus.classList.add('active');
-        })
-        .catch(error => {
-            apiStatus.textContent = 'API Status: Error - Not responding';
-            console.error('Error checking API status:', error);
-        });
+    // fetch(`${API_BASE}/alive`)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         apiStatus.textContent = `API Status: ${data.msg}`;
+    //         apiStatus.classList.add('active');
+    //     })
+    //     .catch(error => {
+    //         apiStatus.textContent = 'API Status: Error - Not responding';
+    //         console.error('Error checking API status:', error);
+    //     });
 
     // Handle search form submission
     searchForm.addEventListener('submit', function(e) {
@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const cottageElement = document.createElement('div');
         cottageElement.classList.add('cottage-item');
         
-        const placeholderImage = `https://via.placeholder.com/300x200?text=${encodeURIComponent(cottage.cottageName)}`;
+        // Handle image URL
+        const imageUrl = cottage.image || `https://via.placeholder.com/300x200?text=${encodeURIComponent(cottage.cottageName)}`;
         
         // Create booking period HTML if it exists
         let bookingPeriodHtml = '';
@@ -133,7 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         cottageElement.innerHTML = `
             <h3>${cottage.cottageName || 'Unnamed Cottage'}</h3>
-            <img src="${placeholderImage}" alt="${cottage.cottageName || 'Cottage'}" style="max-width: 100%; height: auto;">
+            <div class="cottage-image">
+                <img src="${imageUrl}" 
+                     alt="${cottage.cottageName || 'Cottage'}" 
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'"
+                     loading="lazy">
+            </div>
             ${bookingNumberHtml}
             <p>Address: ${cottage.address || 'N/A'}</p>
             <p>Capacity: ${cottage.actualPlaces || 'N/A'} people, ${cottage.actualBedrooms || 'N/A'} bedrooms</p>

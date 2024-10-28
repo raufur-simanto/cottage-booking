@@ -284,7 +284,7 @@
         <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasNumberOfBedrooms>
         <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hasNumberOfPlaces>
         <ont:isAvailable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isAvailable>
-        <hasImage rdf:resource="http://localhost:8080/CottageBooking/images/lakeview.jpg"/>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/Lakeview%20Cottage.jpg"/>
     </owl:NamedIndividual>
     
 
@@ -301,7 +301,7 @@
         <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasNumberOfBedrooms>
         <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasNumberOfPlaces>
         <ont:isAvailable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isAvailable>
-        <hasImage rdf:resource="http://localhost:8080/CottageBooking/images/forestretreat.jpg"/>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/Forest%20Retreat.jpg"/>
     </owl:NamedIndividual>
     
 
@@ -318,7 +318,7 @@
         <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasNumberOfBedrooms>
         <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</hasNumberOfPlaces>
         <ont:isAvailable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isAvailable>
-        <hasImage rdf:resource="http://localhost:8080/CottageBooking/images/mountaincabin.jpg"/>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/Mountain%20Cabin.jpg"/>
     </owl:NamedIndividual>
     
 
@@ -335,7 +335,7 @@
         <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasNumberOfBedrooms>
         <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</hasNumberOfPlaces>
         <ont:isAvailable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isAvailable>
-        <hasImage rdf:resource="http://localhost:8080/CottageBooking/images/seasidevilla.jpg"/>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/Seaside%20Villa.jpg"/>
     </owl:NamedIndividual>
     
 
@@ -352,7 +352,7 @@
         <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasNumberOfBedrooms>
         <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasNumberOfPlaces>
         <ont:isAvailable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ont:isAvailable>
-        <hasImage rdf:resource="http://localhost:8080/CottageBooking/images/countryhouse.jpg"/>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/Country%20House.jpg"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
