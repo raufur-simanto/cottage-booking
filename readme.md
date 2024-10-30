@@ -55,6 +55,9 @@ Brief description of what your project does.
 
 The application will be available at `http://localhost:5000/cottages`
 
+## Ontology file path
+`http://localhost:5000/cottages/onto/CottageBookingData.rdf`
+
 ## API Documentation
 
 The API documentation is automatically generated using Flask-RESTX and can be accessed at:
