@@ -40,8 +40,6 @@ class SearchCottages(Resource):
         except Exception as e:
             return {'status': 'error', 'message': str(e)}, 400
 
-# Route to get all cottages with an optional 'isAvailable' query param
-
 
 class GetAllCottages(Resource):
     def get(self):

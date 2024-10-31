@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // List of cities (you can expand this list as needed)
     const cities = ['Helsinki', 'Tampere', 'Turku', 'Oulu', 'Espoo', 'Vantaa', 'Jyväskylä'];
 
-    // Populate the preferred city dropdown
+    // the preferred city dropdown
     cities.forEach(city => {
         const option = document.createElement('option');
         option.value = city;
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const year = date.getFullYear();
                 searchCriteria[key] = `${day}.${month}.${year}`;
             } else {
-                // For other fields (like bookerName and preferredCity), keep as string
+                // For other fields keep as string
                 searchCriteria[key] = value;
             }
         });
@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create booking number HTML if it exists
         let bookingNumberHtml = cottage.bookingNumber ? 
             `<p class="booking-number">Booking Number: ${cottage.bookingNumber}</p>` : '';
+        let bookerNameHtml = cottage.bookerName ?
+            `<p class="booker-name">Booker: ${cottage.bookerName}</p>` : '';
         
         cottageElement.innerHTML = `
             <h3>${cottage.cottageName || 'Unnamed Cottage'}</h3>
@@ -140,12 +142,13 @@ document.addEventListener('DOMContentLoaded', function() {
                      onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'"
                      loading="lazy">
             </div>
+            ${bookerNameHtml}
             ${bookingNumberHtml}
             <p>Address: ${cottage.address || 'N/A'}</p>
             <p>Capacity: ${cottage.actualPlaces || 'N/A'} people, ${cottage.actualBedrooms || 'N/A'} bedrooms</p>
             <p>Distance to Lake: ${cottage.distanceToLake || 'N/A'} m</p>
             <p>Nearest City: ${cottage.nearestCity || 'N/A'} (${cottage.distanceToCity || 'N/A'} km)</p>
-            <p>Available: ${cottage.isAvailable ? 'Yes' : 'No'}</p>
+            
             ${bookingPeriodHtml}
         `;
         
