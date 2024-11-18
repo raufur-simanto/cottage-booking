@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://localhost:8080/CottageBookingService/ontology#"
+     xml:base="http://localhost:8080/CottageBookingService/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#bookingEndDate -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#bookingEndDate"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#bookingStartDate -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#bookingStartDate"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasAddress -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasAddress"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasDistanceToCity -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasDistanceToCity"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasDistanceToLake -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasDistanceToLake"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasImage -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasImage"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasName -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasName"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasNearestCity -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasNearestCity"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasNumberOfBedrooms -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasNumberOfBedrooms"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#hasNumberOfPlaces -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#hasNumberOfPlaces"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#isUnavailable -->
+
+    <owl:AnnotationProperty rdf:about="http://localhost:8080/CottageBookingService/ontology#isUnavailable"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#BookingPeriod -->
+
+    <owl:Class rdf:about="http://localhost:8080/CottageBookingService/ontology#BookingPeriod"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#City -->
+
+    <owl:Class rdf:about="http://localhost:8080/CottageBookingService/ontology#City"/>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#Cottage -->
+
+    <owl:Class rdf:about="http://localhost:8080/CottageBookingService/ontology#Cottage"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#BookingPeriod1 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#BookingPeriod1">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod"/>
+        <bookingEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-12-07</bookingEndDate>
+        <bookingStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-12-01</bookingStartDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#BookingPeriod2 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#BookingPeriod2">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod"/>
+        <bookingEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-12-15</bookingEndDate>
+        <bookingStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-12-10</bookingStartDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#BookingPeriod3 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#BookingPeriod3">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod"/>
+        <bookingEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-12-25</bookingEndDate>
+        <bookingStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-12-20</bookingStartDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#BookingPeriod4 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#BookingPeriod4">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod"/>
+        <bookingEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-07</bookingEndDate>
+        <bookingStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-01</bookingStartDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#BookingPeriod5 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#BookingPeriod5">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod"/>
+        <bookingEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-15</bookingEndDate>
+        <bookingStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-10</bookingStartDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#City_Helsinki -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#City_Helsinki">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#City"/>
+        <hasName>Helsinki</hasName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#City_Tampere -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#City_Tampere">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#City"/>
+        <hasName>Tampere</hasName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#City_Turku -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#City_Turku">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#City"/>
+        <hasName>Turku</hasName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#Cottage1 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#Cottage1">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Cottage"/>
+        <hasAddress>123 Lake Road, Helsinki</hasAddress>
+        <hasDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</hasDistanceToCity>
+        <hasDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</hasDistanceToLake>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/lakeview.jpg"/>
+        <hasName>Lakeview Cottage</hasName>
+        <hasNearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Helsinki"/>
+        <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasNumberOfBedrooms>
+        <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hasNumberOfPlaces>
+        <isUnavailable rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#Cottage2 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#Cottage2">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Cottage"/>
+        <hasAddress>456 Forest Lane, Tampere</hasAddress>
+        <hasDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</hasDistanceToCity>
+        <hasDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">500</hasDistanceToLake>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/forestretreat.jpg"/>
+        <hasName>Forest Retreat</hasName>
+        <hasNearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Tampere"/>
+        <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasNumberOfBedrooms>
+        <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasNumberOfPlaces>
+        <isUnavailable rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#Cottage3 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#Cottage3">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Cottage"/>
+        <hasAddress>789 Mountain Pass, Turku</hasAddress>
+        <hasDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">70</hasDistanceToCity>
+        <hasDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2000</hasDistanceToLake>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/mountaincabin.jpg"/>
+        <hasName>Mountain Cabin</hasName>
+        <hasNearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Turku"/>
+        <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasNumberOfBedrooms>
+        <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</hasNumberOfPlaces>
+        <isUnavailable rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#Cottage4 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#Cottage4">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Cottage"/>
+        <hasAddress>321 Ocean Drive, Helsinki</hasAddress>
+        <hasDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</hasDistanceToCity>
+        <hasDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</hasDistanceToLake>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/seasidevilla.jpg"/>
+        <hasName>Seaside Villa</hasName>
+        <hasNearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Helsinki"/>
+        <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasNumberOfBedrooms>
+        <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</hasNumberOfPlaces>
+        <isUnavailable rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://localhost:8080/CottageBookingService/ontology#Cottage5 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost:8080/CottageBookingService/ontology#Cottage5">
+        <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Cottage"/>
+        <hasAddress>654 Country Road, Tampere</hasAddress>
+        <hasDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</hasDistanceToCity>
+        <hasDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">800</hasDistanceToLake>
+        <hasImage rdf:resource="https://s3.brilliant.com.bd/images/countryhouse.jpg"/>
+        <hasName>Country House</hasName>
+        <hasNearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Tampere"/>
+        <hasNumberOfBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasNumberOfBedrooms>
+        <hasNumberOfPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasNumberOfPlaces>
+        <isUnavailable rdf:resource="http://localhost:8080/CottageBookingService/ontology#BookingPeriod5"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
