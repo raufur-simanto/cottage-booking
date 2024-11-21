@@ -1,13 +1,27 @@
-from rdflib import Graph, URIRef, Namespace
-from rdflib.namespace import RDF
+from rdflib import Graph, URIRef, Namespace, Literal
+from rdflib.namespace import RDF, XSD
 from datetime import datetime, timedelta
 import uuid
-
+import html
+import os
 from flask import current_app as app
 
 
 CB = Namespace(app.config.get("CB"))
-ONT = Namespace(app.config.get("ONT"))
+
+
+
+def check_file_exists(file_path):
+    """
+    Check if a file exists at the specified path.
+
+    Args:
+    - file_path (str): The path to the file to check.
+
+    Returns:
+    - bool: True if the file exists, False otherwise.
+    """
+    return os.path.exists(file_path)
 
 
 def load_rdf_graph():
@@ -18,28 +32,43 @@ def load_rdf_graph():
     g.parse("project/apis/rdf_data/CottageBooking.rdf", format="xml")
     return g
 
+def load_service_description_graph():
+    """
+        Load RDF graph from file
+    """
+    g = Graph()
+    g.parse("project/apis/rdf_data/CottageService.rdf", format="ttl")
+    return g
+
 
 def generate_possible_dates(start_date, date_shift, num_days):
     """
     Generate all possible date ranges based on start date and shift.
     """
-    start = datetime.strptime(start_date, "%d.%m.%Y")
-    possible_dates = []
-    for shift in range(-date_shift, date_shift + 1):
-        shifted_start = start + timedelta(days=shift)
-        shifted_end = shifted_start + timedelta(days=num_days)
-        possible_dates.append({
-            'startDate': shifted_start.strftime("%Y-%m-%d"),
-            'endDate': shifted_end.strftime("%Y-%m-%d")
-        })
-    return possible_dates
-
+    print("---------------------------------")
+    try:
+        start = start_date
+        
+        print(start)
+        possible_dates = []
+        for shift in range(-date_shift, date_shift + 1):
+            shifted_start = start + timedelta(days=shift)
+            shifted_end = shifted_start + timedelta(days=num_days)
+            possible_dates.append({
+                'startDate': shifted_start.strftime("%Y-%m-%d"),
+                'endDate': shifted_end.strftime("%Y-%m-%d")
+            })
+        return possible_dates
+    except Exception as e:
+        app.logger.info(f"error: {e}")
 
 
 def search_cottages_by_criteria(g, data):
     """
     Search for cottages matching the given criteria.
     """
+    app.logger.info(f"--------------data---------")
+    app.logger.info(f"{data}")
     # Extract search criteria
     booker_name = data['bookerName']
     required_places = int(data['requiredPlaces'])
@@ -50,6 +79,8 @@ def search_cottages_by_criteria(g, data):
     num_days = int(data['numberOfDays'])
     start_date = data['startDate']  # Format: dd.mm.yyyy
     date_shift = int(data['dateShift'])
+
+    app.logger.info(f"data in search cottage-----------")
     
     # Generate all possible date ranges
     possible_date_ranges = generate_possible_dates(start_date, date_shift, num_days)
@@ -248,3 +279,144 @@ def get_all_cottages(g, is_available_query):
 
         all_cottages.append(cottage_info)
     return all_cottages
+
+
+
+def process_rdf_input():
+    g = Graph()
+    g.parse("project/apis/rdf_data/input.xml", format='xml')
+    # Define the namespace
+    ns1 = Namespace("http://localhost:8080/CottageBookingService/ontology#")
+    print("booker")
+    print(g.value(URIRef("http://example.org/request"), ns1.bookerName))
+
+    # Extract the booking parameters
+    raw_booking_data = {
+        'bookerName': g.value(URIRef("http://example.org/request"), ns1.bookerName),
+        'requiredPlaces': g.value(URIRef("http://example.org/request"), ns1.requiredPlaces),
+        'requiredBedrooms': g.value(URIRef("http://example.org/request"), ns1.requiredBedrooms),
+        'maxLakeDistance': g.value(URIRef("http://example.org/request"), ns1.maxDistanceToLake),
+        'preferredCity': g.value(URIRef("http://example.org/request"), ns1.nearestCity),
+        'maxCityDistance': g.value(URIRef("http://example.org/request"), ns1.maxDistanceToCity),
+        'numberOfDays': g.value(URIRef("http://example.org/request"), ns1.requiredDays),
+        'startDate': g.value(URIRef("http://example.org/request"), ns1.startDate),
+        'dateShift': g.value(URIRef("http://example.org/request"), ns1.maxShiftDays)
+    }
+
+    app.logger.info(f"---------------------- raw booking data ------------------")
+    app.logger.info(f"{raw_booking_data}")
+
+    # Convert `rdflib.term.Literal` to plain Python types where applicable
+    booking_data = {
+        key: (value.value if isinstance(value, Literal) else value)
+        for key, value in raw_booking_data.items()
+    }
+
+#     # Cast numeric fields explicitly to the desired types
+#     # booking_data['requiredPlaces'] = int(booking_data['requiredPlaces'])
+#     # booking_data['requiredBedrooms'] = int(booking_data['requiredBedrooms'])
+#     # booking_data['maxLakeDistance'] = int(booking_data['maxLakeDistance'])
+#     # booking_data['maxCityDistance'] = int(booking_data['maxCityDistance'])
+#     # booking_data['numberOfDays'] = int(booking_data['numberOfDays'])
+#     # booking_data['dateShift'] = int(booking_data['dateShift'])
+
+    app.logger.info(f"Formatted input: {booking_data}")
+    return booking_data
+
+
+
+
+
+# Define function to generate RDF for multiple bookings
+def generate_rdf(bookings_data):
+    # Create a new RDF graph
+    g = Graph()
+
+    # Define namespaces
+    ns = {
+        'sswap': URIRef('http://localhost:8080/CottageBookingService/ontology#'),
+        'cottage': URIRef('http://localhost:8080/CottageBookingService/cottage#'),
+        'xsd': XSD
+    }
+
+    # Add the CottageBookingService resource
+    service_uri = URIRef('http://localhost:8080/CottageBookingService')
+    g.add((service_uri, RDF.type, ns['sswap'] + 'Resource'))
+    g.add((service_uri, ns['sswap'] + 'name', Literal("Cottage Booking Service", datatype=XSD.string)))
+    g.add((service_uri, ns['sswap'] + 'oneLineDescription', Literal("A service that accepts booking parameters and returns cottages that meet these requirements", datatype=XSD.string)))
+
+    # Iterate through each booking and generate RDF for each
+    for booking in bookings_data:
+        # Generate a unique booking number (if needed, or use the provided bookingNumber)
+        booking_number = booking['bookingNumber']
+
+        # Create booking resource URI
+        booking_uri = URIRef(f'http://localhost:8080/CottageBookingService/Booking/{booking_number}')
+        # Add booking period details (nested object: bookingPeriod)
+        start_date = booking['bookingPeriod']['startDate']
+        end_date = booking['bookingPeriod']['endDate']
+        g.add((booking_uri, ns['cottage'] + 'bookingStartDate', Literal(start_date, datatype=XSD.date)))
+        g.add((booking_uri, ns['cottage'] + 'bookingEndDate', Literal(end_date, datatype=XSD.date)))
+
+        # For each booking, add suggested cottages (mapped data)
+        cottage_suggestion_uri = URIRef(f'http://localhost:8080/CottageBookingService/CottageSuggestion/{booking_number}')
+
+        g.add((cottage_suggestion_uri, RDF.type, ns['sswap'] + 'CottageSuggestion'))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'bookingNumber', Literal(booking['bookingNumber'], datatype=XSD.string)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'bookerName', Literal(booking['bookerName'], datatype=XSD.string)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'cottageName', Literal(booking['cottageName'], datatype=XSD.string)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'cottageAddress', Literal(booking['address'], datatype=XSD.string)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'cottageImage', Literal(booking['image'], datatype=XSD.anyURI)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'actualPlaces', Literal(booking['actualPlaces'], datatype=XSD.integer)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'actualBedrooms', Literal(booking['actualBedrooms'], datatype=XSD.integer)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'actualDistanceToLake', Literal(booking['distanceToLake'], datatype=XSD.integer)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'nearestCity', Literal(booking['nearestCity'], datatype=XSD.string)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'distanceToCity', Literal(booking['distanceToCity'], datatype=XSD.integer)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'bookingStartDate', Literal(start_date, datatype=XSD.date)))
+        g.add((cottage_suggestion_uri, ns['cottage'] + 'bookingEndDate', Literal(end_date, datatype=XSD.date)))
+
+        # Map the CottageBookingService to the CottageSuggestion
+        g.add((booking_uri, ns['sswap'] + 'mapsTo', cottage_suggestion_uri))
+
+    # Return the RDF graph in a readable format
+    return g.serialize(format="xml")
+
+# Example booking data (you can pass your actual data here)
+# bookings_data = [
+#     {
+#         "bookerName": "John Doe",
+#         "bookingNumber": "321ac1ad-044d-4643-82eb-edf02382091f",
+#         "address": "321 Ocean Drive, Helsinki",
+#         "image": "https://s3.brilliant.com.bd/images/seasidevilla.jpg",
+#         "actualPlaces": 10,
+#         "actualBedrooms": 5,
+#         "distanceToLake": 0,
+#         "nearestCity": "Helsinki",
+#         "distanceToCity": 10,
+#         "cottageName": "Seaside Villa",
+#         "bookingPeriod": {
+#             "startDate": "2024-12-01",
+#             "endDate": "2024-12-06"
+#         }
+#     },
+#     {
+#         "bookerName": "Jane Doe",
+#         "bookingNumber": "abc12345-6789-0123-4567-89abcdef0123",
+#         "address": "123 Lake View, Espoo",
+#         "image": "https://s3.brilliant.com.bd/images/lakeviewvilla.jpg",
+#         "actualPlaces": 8,
+#         "actualBedrooms": 4,
+#         "distanceToLake": 2,
+#         "nearestCity": "Espoo",
+#         "distanceToCity": 5,
+#         "cottageName": "Lake View Villa",
+#         "bookingPeriod": {
+#             "startDate": "2024-12-10",
+#             "endDate": "2024-12-15"
+#         }
+#     }
+# ]
+
+
+
+

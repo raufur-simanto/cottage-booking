@@ -1,10 +1,11 @@
-from flask import request, jsonify, current_app as app, render_template, make_response, send_from_directory
+from flask import request, jsonify, current_app as app, render_template, make_response, send_from_directory, Response
 from flask_restx import Namespace, Resource, fields
-from project.apis.utils import load_rdf_graph, search_cottages_by_criteria, get_all_cottages
+from project.apis.utils import load_rdf_graph, search_cottages_by_criteria, get_all_cottages, load_service_description_graph, process_rdf_input, generate_rdf
 import os
 
 # Load RDF data graph
 g = load_rdf_graph()
+service_g = load_service_description_graph()
 
 
 # Define the namespace for cottages
@@ -28,15 +29,35 @@ class MainPage(Resource):
     def get(self):
         headers = {'Content-Type': 'text/html'}
         return make_response(render_template('index.html'), 200, headers)
+    
+
+class Cottage_Service(Resource):
+    def get(self):
+        data = service_g.serialize(format='ttl')
+        return Response(data, mimetype='application/rdf+xml')
+
+
 
 
 class SearchCottages(Resource):
-    @cottage_namespace.expect(cottage_search_model)
+    # @cottage_namespace.expect(cottage_search_model)
     def post(self):
-        data = request.json
+        data = request.data.decode('utf-8')
+        app.logger.info(f"--------------------------data----------------------------")
+        data = data.encode().decode("unicode_escape")
+        cleaned_data = data.strip('"')
+        app.logger.info(f"cleaned:   {cleaned_data}")
+        with open("project/apis/rdf_data/input.xml", "w", encoding="utf-8") as f:
+            f.write(cleaned_data)
+
+        booking_input_data = process_rdf_input()
+        app.logger.info(f"formated input: {booking_input_data}")
         try:
-            matching_cottages = search_cottages_by_criteria(g, data)
-            return {'status': 'success', 'results': matching_cottages}
+            matching_cottages = search_cottages_by_criteria(g, booking_input_data)
+            resp_data = generate_rdf(matching_cottages)
+            app.logger.info(f"{resp_data}")
+            # return {'status': 'success', 'results': resp_data}
+            return Response(resp_data, content_type="xml/rdf")
         except Exception as e:
             return {'status': 'error', 'message': str(e)}, 400
 
@@ -100,7 +121,8 @@ class ServeOntology(Resource):
 
 
 # Update the resource additions
-cottage_namespace.add_resource(MainPage, '')
+cottage_namespace.add_resource(Cottage_Service, '')
+# cottage_namespace.add_resource(MainPage, '')
 cottage_namespace.add_resource(SearchCottages, '/search')
 cottage_namespace.add_resource(GetAllCottages, '/all')
 cottage_namespace.add_resource(Alive, "/alive")

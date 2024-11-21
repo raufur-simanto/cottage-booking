@@ -3,7 +3,7 @@ import os
 
 from flask import Flask
 from config import config
-
+from flask_cors import CORS
 
 def create_app(config_name=None):
     """create a factory function"""
@@ -14,6 +14,7 @@ def create_app(config_name=None):
 
     with app.app_context():
         app.config.from_object(config[config_name])
+        CORS(app)
 
         app.logger.setLevel(logging.INFO)
         from project.apis import api
