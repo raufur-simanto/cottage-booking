@@ -33,7 +33,7 @@ class MainPage(Resource):
 
 class Cottage_Service(Resource):
     def get(self):
-        data = service_g.serialize(format='ttl')
+        data = service_g.serialize(format='xml')
         return Response(data, mimetype='application/rdf+xml')
 
 
@@ -43,7 +43,7 @@ class SearchCottages(Resource):
     # @cottage_namespace.expect(cottage_search_model)
     def post(self):
         data = request.data.decode('utf-8')
-        app.logger.info(f"--------------------------data----------------------------")
+        # app.logger.info(f"--------------------------data----------------------------")
         data = data.encode().decode("unicode_escape")
         cleaned_data = data.strip('"')
         app.logger.info(f"cleaned:   {cleaned_data}")
