@@ -1,6 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <rdf:RDF xmlns:cbs="http://localhost:8080/CottageBookingService/ontology#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sswap="http://sswapmeet.sswap.info/sswap/">
-  <rdf:Description rdf:nodeID="N881051cdbf5641f696d1de0b4e9c5252">
+  <rdf:Description rdf:about="http://localhost:8080/CottageBookingService/CottageBookingService">
+    <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Resource" />
+    <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#CottageBookingServiceType" />
+    <sswap:providedBy rdf:resource="http://localhost:8080/CottageBookingService/resourceProvider" />
+    <sswap:name>Cottage Booking Service</sswap:name>
+    <sswap:oneLineDescription>A service that accepts booking parameters and returns cottages that meet these requirements.</sswap:oneLineDescription>
+    <sswap:operatesOn rdf:nodeID="Nf8dbe2c456064642831b3bfa0366d7ca" />
+  <sswap:operatesOn><sswap:Graph><sswap:hasMapping><sswap:Subject><rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Booking" /><cbs:bookerName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Siaam</cbs:bookerName><cbs:requiredPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</cbs:requiredPlaces><cbs:requiredBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</cbs:requiredBedrooms><cbs:maxDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2005</cbs:maxDistanceToLake><cbs:nearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Turku" /><cbs:maxDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">72</cbs:maxDistanceToCity><cbs:requiredDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</cbs:requiredDays><cbs:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2024-12-01</cbs:startDate><cbs:maxShiftDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</cbs:maxShiftDays><sswap:mapsTo><sswap:Object><rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#CottageSuggestion" /></sswap:Object></sswap:mapsTo></sswap:Subject></sswap:hasMapping></sswap:Graph></sswap:operatesOn></rdf:Description>
+  <rdf:Description rdf:nodeID="N9b186c660b9a4c51aec08656e6165bc5">
     <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Subject" />
     <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Booking" />
     <cbs:bookerName rdf:datatype="http://www.w3.org/2001/XMLSchema#string" />
@@ -12,22 +20,14 @@
     <cbs:requiredDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer" />
     <cbs:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date" />
     <cbs:maxShiftDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer" />
-    <sswap:mapsTo rdf:nodeID="Nb597db609dc144a3a71abe4bb53a73fd" />
+    <sswap:mapsTo rdf:nodeID="N54024249a4864f68b9b07a8f4f90217e" />
   </rdf:Description>
-  <rdf:Description rdf:about="http://localhost:8080/CottageBookingService/CottageBookingService">
-    <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Resource" />
-    <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#CottageBookingServiceType" />
-    <sswap:providedBy rdf:resource="http://localhost:8080/CottageBookingService/resourceProvider" />
-    <sswap:name>Cottage Booking Service</sswap:name>
-    <sswap:oneLineDescription>A service that accepts booking parameters and returns cottages that meet these requirements.</sswap:oneLineDescription>
-    <sswap:operatesOn rdf:nodeID="N22dbddaa7a95410abf96a92df1946f45" />
-  <sswap:operatesOn><sswap:Graph><sswap:hasMapping><sswap:Subject><rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#Booking" /><cbs:bookerName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Siaam</cbs:bookerName><cbs:requiredPlaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</cbs:requiredPlaces><cbs:requiredBedrooms rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</cbs:requiredBedrooms><cbs:maxDistanceToLake rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</cbs:maxDistanceToLake><cbs:nearestCity rdf:resource="http://localhost:8080/CottageBookingService/ontology#City_Helsinki" /><cbs:maxDistanceToCity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</cbs:maxDistanceToCity><cbs:requiredDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</cbs:requiredDays><cbs:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2024-12-12</cbs:startDate><cbs:maxShiftDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</cbs:maxShiftDays><sswap:mapsTo><sswap:Object><rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#CottageSuggestion" /></sswap:Object></sswap:mapsTo></sswap:Subject></sswap:hasMapping></sswap:Graph></sswap:operatesOn></rdf:Description>
-  <rdf:Description rdf:nodeID="N22dbddaa7a95410abf96a92df1946f45">
-    <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Graph" />
-    <sswap:hasMapping rdf:nodeID="N881051cdbf5641f696d1de0b4e9c5252" />
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nb597db609dc144a3a71abe4bb53a73fd">
+  <rdf:Description rdf:nodeID="N54024249a4864f68b9b07a8f4f90217e">
     <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Object" />
     <rdf:type rdf:resource="http://localhost:8080/CottageBookingService/ontology#CottageSuggestion" />
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf8dbe2c456064642831b3bfa0366d7ca">
+    <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Graph" />
+    <sswap:hasMapping rdf:nodeID="N9b186c660b9a4c51aec08656e6165bc5" />
   </rdf:Description>
 </rdf:RDF>
